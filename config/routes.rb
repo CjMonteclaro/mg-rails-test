@@ -4,6 +4,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "basket_case#index"
-
-  get 'basket_case/order_by_fruit'
 end
