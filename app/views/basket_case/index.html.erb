@@ -1,8 +1,18 @@
 <h1>Fruit Basket</h1>
 <span class="data">raw data: <%= @fruits %></span>
 <br />
-<%= link_to "Order by Name - #{@order}", basket_case_order_by_fruit_path(order: @order), class: "button"%>
-<%= link_to "Order by Amount - #{@order}", "#", class: "button"%>
+
+<%= form_tag(basket_case_index_path, method: 'get') do %>
+  <label>Sort by:
+    <%= select_tag(:sort_by, options_for_select([['Amount', 'amount'], ['Name', 'name']], params[:sort_by])) %>
+  </label>
+
+  <label>Order:
+    <%= select_tag(:order, options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], params[:order])) %>
+  </label>
+
+  <%= submit_tag 'Sort' %>
+<% end %>
 
 <div class="container">
 <%- @list_items.each do |fruit, amount| %>
